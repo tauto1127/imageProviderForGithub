@@ -18,7 +18,8 @@ namespace imageProviderForGithub.Controllers
             var result = await loadImageFromURL(
                 new Uri("https://takutk.com/obs/1704169758324.jpg")
             );
-            
+            Response.Headers["Cache-Control"] = "no-cache";
+
             Console.WriteLine(await result.Content.ReadAsByteArrayAsync());
             return base.File(await result.Content.ReadAsByteArrayAsync(), "image/png");
             //return await result.Content.ReadAsByteArrayAsync();
