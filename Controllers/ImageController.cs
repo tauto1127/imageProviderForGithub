@@ -1,6 +1,10 @@
+using System;
 using System.Drawing;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Humanizer;
+using imageProviderForGithub.Model;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol;
 
@@ -8,7 +12,7 @@ using NuGet.Protocol;
 namespace imageProviderForGithub.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class ImageController : ControllerBase
     {
         [HttpGet]
@@ -32,6 +36,13 @@ namespace imageProviderForGithub.Controllers
                 BaseAddress = url
             };
             return await client.GetAsync("");
+        }
+
+        [HttpGet]
+        public async Task<string> getContributions()
+        {
+            GithubContributionsApiResult result =  GithubUtil.getContributions("tauto1127");
+            return result.contributions[0].ToString();
         }
     }
 }

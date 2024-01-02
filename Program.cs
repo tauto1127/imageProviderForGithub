@@ -1,3 +1,8 @@
+using imageProviderForGithub.Controllers;
+
+GithubUtil.getContributions("tauto1127");
+Console.Write("aiueo");
+/*
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -23,3 +28,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+*/
