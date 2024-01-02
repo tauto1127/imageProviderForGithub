@@ -1,4 +1,4 @@
-namespace QuickType;
+namespace imageProviderForGithub.Model;
 
 public class ImgbunApiModel
 {

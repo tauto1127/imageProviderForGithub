@@ -1,10 +1,13 @@
 using imageProviderForGithub.Controllers;
-using QuickType;
+using Newtonsoft.Json;
 
 //var ore = await GithubUtil.getGithubUtil("tauto1127");
 //Console.WriteLine(ore.GetStreak());
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json")
+    .Build();
 
 // Add services to the container.
 

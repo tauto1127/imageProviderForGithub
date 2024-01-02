@@ -1,6 +1,6 @@
 using System;
 using System.Text.Json;
-using QuickType;
+using imageProviderForGithub.Model;
 
 namespace imageProviderForGithub.Controllers;
 

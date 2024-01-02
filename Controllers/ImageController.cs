@@ -3,11 +3,11 @@ using System.Drawing;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Transactions;
 using Humanizer;
 using imageProviderForGithub.Util;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol;
-using QuickType;
 
 
 namespace imageProviderForGithub.Controllers
@@ -16,6 +16,15 @@ namespace imageProviderForGithub.Controllers
     [Route("[controller]/[action]")]
     public class ImageController : ControllerBase
     {
+        private string imgbun_api_key;
+        public ImageController()
+        {
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+            imgbun_api_key = configuration["imgbun_api_key"]!;
+            Console.WriteLine("keyは"+ imgbun_api_key);
+        }
         [HttpGet]
         //[Produces("image/png")]
         public async Task<ActionResult> GetImage()
@@ -42,9 +51,10 @@ namespace imageProviderForGithub.Controllers
         [HttpGet]
         public async Task<ActionResult> getStreakImg(string username)
         {
+            Console.WriteLine("キーは" + imgbun_api_key +"です。");
             var githubUtil = await GithubUtil.getGithubUtil(username);
             int streak = githubUtil.GetStreak();
-            Uri img = await imgbunUtil.GetImgWithText("STREAK: " + streak);
+            Uri img = await imgbunUtil.GetImgWithText(imgbun_api_key, "STREAK: " + streak);
             HttpClient httpClient = new HttpClient();
             var res = await httpClient.GetAsync(img);
             return base.File(await res.Content.ReadAsByteArrayAsync(), "image/png");
