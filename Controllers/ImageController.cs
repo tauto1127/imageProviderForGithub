@@ -54,7 +54,7 @@ namespace imageProviderForGithub.Controllers
             Console.WriteLine("キーは" + imgbun_api_key +"です。");
             var githubUtil = await GithubUtil.getGithubUtil(username);
             int streak = githubUtil.GetStreak();
-            Uri img = await imgbunUtil.GetImgWithText(imgbun_api_key, "STREAK: " + streak);
+            Uri img = await imgbunUtil.GetImgWithText(key: imgbun_api_key, text: "STREAK: " + streak);
             HttpClient httpClient = new HttpClient();
             var res = await httpClient.GetAsync(img);
             return base.File(await res.Content.ReadAsByteArrayAsync(), "image/png");

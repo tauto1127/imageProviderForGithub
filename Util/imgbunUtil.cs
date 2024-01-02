@@ -17,7 +17,7 @@ public class imgbunUtil
 
     private static Uri generateImgbunUri( String key, String text )
     {
-        String uri = IMGBUN_URL + "?key=" + key + "&text=" + text;
+        String uri = IMGBUN_URL + "?key=" + key + "&text=" + text + "&background=FFFFFF";
         return new Uri(uri);
     }
 }
