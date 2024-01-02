@@ -1,10 +1,8 @@
 using imageProviderForGithub.Controllers;
 using QuickType;
 
-GithubContributionApi res = GithubUtil.getContributions("tauto1127");
-Console.Write("aiueo");
-Console.WriteLine(res.Contributions[0][0].ContributionCount);
-
+var ore = await GithubUtil.getGithubUtil("tauto1127");
+Console.WriteLine(ore.GetStreak());
 /*
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,5 +28,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
-*/
+app.Run();*/

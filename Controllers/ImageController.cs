@@ -39,10 +39,9 @@ namespace imageProviderForGithub.Controllers
         }
 
         [HttpGet]
-        public async Task<string> getContributions()
+        public async Task<String> getStreakImg()
         {
-            GithubContributionApi result =  GithubUtil.getContributions("tauto1127");
-            return result.Contributions[0].ToString();
+            return "";
         }
     }
 }
