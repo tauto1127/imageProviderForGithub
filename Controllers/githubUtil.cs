@@ -8,7 +8,7 @@ public class GithubUtil
 {
     private const String ApiUrl = "https://github-contributions-api.deno.dev/tauto1127.json";
 
-    public static Temperatures? getContributions(string username)
+    public static GithubContributionApi? getContributions(string username)
     {
         string jsonStr = @"{
     ""contributions"": [
@@ -2327,6 +2327,6 @@ public class GithubUtil
         {
             PropertyNameCaseInsensitive = true,
         };
-        return JsonSerializer.Deserialize<Temperatures>(jsonStr, options);
+        return JsonSerializer.Deserialize<GithubContributionApi>(jsonStr, options);
     }
 }

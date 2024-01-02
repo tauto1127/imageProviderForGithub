@@ -41,7 +41,7 @@ namespace imageProviderForGithub.Controllers
         [HttpGet]
         public async Task<string> getContributions()
         {
-            Temperatures result =  GithubUtil.getContributions("tauto1127");
+            GithubContributionApi result =  GithubUtil.getContributions("tauto1127");
             return result.Contributions[0].ToString();
         }
     }
