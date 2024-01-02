@@ -4,9 +4,9 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Humanizer;
-using imageProviderForGithub.Model;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol;
+using QuickType;
 
 
 namespace imageProviderForGithub.Controllers
@@ -41,8 +41,8 @@ namespace imageProviderForGithub.Controllers
         [HttpGet]
         public async Task<string> getContributions()
         {
-            GithubContributionsApiResult result =  GithubUtil.getContributions("tauto1127");
-            return result.contributions[0].ToString();
+            Temperatures result =  GithubUtil.getContributions("tauto1127");
+            return result.Contributions[0].ToString();
         }
     }
 }

@@ -1,7 +1,10 @@
 using imageProviderForGithub.Controllers;
+using QuickType;
 
-GithubUtil.getContributions("tauto1127");
+Temperatures res = GithubUtil.getContributions("tauto1127");
 Console.Write("aiueo");
+Console.WriteLine(res.Contributions[0][0].ContributionCount);
+
 /*
 var builder = WebApplication.CreateBuilder(args);
 
