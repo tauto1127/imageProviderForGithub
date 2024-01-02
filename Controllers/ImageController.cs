@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Humanizer;
+using imageProviderForGithub.Util;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol;
 using QuickType;
@@ -39,9 +40,14 @@ namespace imageProviderForGithub.Controllers
         }
 
         [HttpGet]
-        public async Task<String> getStreakImg()
+        public async Task<ActionResult> getStreakImg(string username)
         {
-            return "";
+            var githubUtil = await GithubUtil.getGithubUtil(username);
+            int streak = githubUtil.GetStreak();
+            Uri img = await imgbunUtil.GetImgWithText("STREAK: " + streak);
+            HttpClient httpClient = new HttpClient();
+            var res = await httpClient.GetAsync(img);
+            return base.File(await res.Content.ReadAsByteArrayAsync(), "image/png");
         }
     }
 }
