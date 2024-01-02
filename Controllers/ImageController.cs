@@ -16,7 +16,7 @@ namespace imageProviderForGithub.Controllers
         public async Task<ActionResult> GetImage()
         {
             var result = await loadImageFromURL(
-                new Uri("https://takutk.com/obs/img/class/%e3%82%bd%e3%83%95%e3%83%88%e3%82%a6%e3%82%a7%e3%82%a2%e8%a8%ad%e8%a8%88%e8%ab%9611%e5%9b%9e%e7%9b%ae%e5%87%ba%e5%b8%ad%e7%a2%ba%e8%aa%8d.png")
+                new Uri("https://takutk.com/obs/1704169758324.jpg")
             );
             
             Console.WriteLine(await result.Content.ReadAsByteArrayAsync());
