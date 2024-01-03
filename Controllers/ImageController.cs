@@ -13,7 +13,7 @@ using NuGet.Protocol;
 namespace imageProviderForGithub.Controllers
 {
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("[action]")]
     public class ImageController : ControllerBase
     {
         private string imgbun_api_key;
