@@ -49,9 +49,12 @@ namespace imageProviderForGithub.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> getStreakImg(string username)
+        public async Task<ActionResult> StreakImg(string username)
         {
+            Response.Headers["Cache-Control"] = "no-cache";
+            
             Console.WriteLine("キーは" + imgbun_api_key +"です。");
+            
             var githubUtil = await GithubUtil.getGithubUtil(username);
             int streak = githubUtil.GetStreak();
             Uri img = await imgbunUtil.GetImgWithText(key: imgbun_api_key, text: "STREAK: " + streak);
