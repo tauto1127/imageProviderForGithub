@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -61,6 +62,21 @@ namespace imageProviderForGithub.Controllers
             HttpClient httpClient = new HttpClient();
             var res = await httpClient.GetAsync(img);
             return base.File(await res.Content.ReadAsByteArrayAsync(), "image/png");
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetTestImg(string text)
+        {
+            //Bitmap bitmap = new Bitmap(200, 200);
+            //Graphics graphics = Graphics.FromImage(bitmap);
+            //
+            //graphics.Clear(Color.Aqua);
+
+            //Response.Headers["Cache-Control"] = "no-cache";
+            //MemoryStream memoryStream = new MemoryStream();
+            //bitmap.Save(memoryStream, ImageFormat.Png);
+            //return base.File(memoryStream.ToArray(), "image/png");
+            return null;
         }
     }
 }
