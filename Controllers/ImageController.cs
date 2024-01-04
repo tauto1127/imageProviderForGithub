@@ -9,6 +9,7 @@ using Humanizer;
 using imageProviderForGithub.Util;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol;
+using SkiaSharp;
 
 
 namespace imageProviderForGithub.Controllers
@@ -65,18 +66,23 @@ namespace imageProviderForGithub.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetTestImg(string text)
+        public async Task<ActionResult> GetTestImg(String text = "こんにちは")
         {
-            //Bitmap bitmap = new Bitmap(200, 200);
-            //Graphics graphics = Graphics.FromImage(bitmap);
-            //
-            //graphics.Clear(Color.Aqua);
-
-            //Response.Headers["Cache-Control"] = "no-cache";
-            //MemoryStream memoryStream = new MemoryStream();
-            //bitmap.Save(memoryStream, ImageFormat.Png);
-            //return base.File(memoryStream.ToArray(), "image/png");
-            return null;
+            Response.Headers["Cache-Control"] = "no-cache";
+            using (var surface = SKSurface.Create(new SKImageInfo(400, 400)))
+            {
+                SKCanvas skCanvas = surface.Canvas;
+                skCanvas.Clear(SKColors.Aqua);
+                SKPaint skPaint = new SKPaint()
+                {
+                    TextSize = 45,
+                    TextAlign = SKTextAlign.Center,
+                    Color = SKColors.Black,
+                };
+                skCanvas.DrawText(text, 100, 100, skPaint);
+                
+                return base.File(surface.Snapshot().Encode().ToArray(), "image/png");
+            }
         }
     }
 }
