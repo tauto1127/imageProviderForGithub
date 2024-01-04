@@ -6,15 +6,21 @@ namespace imageProviderForGithub.Controllers;
 
 public class GithubUtil
 {
-    private const String ApiUrl = "https://github-contributions-api.deno.dev/tauto1127.json";
+    private const String ApiUrl = "https://github-contributions-api.deno.dev/";
+    private const String ExtensionResponse = ".json";
+    
     private GithubContributionApi _githubContributionApi = null!;
+    private String userName;
 
-    private GithubUtil() { }
+    private GithubUtil(String username)
+    {
+        userName = username;
+    }
 
     private async Task getContributions()
     {
         HttpClient httpClient = new HttpClient();
-        var response = await httpClient.GetAsync(new Uri(ApiUrl));
+        var response = await httpClient.GetAsync(new Uri(ApiUrl + userName + ExtensionResponse));
         string str = await response.Content.ReadAsStringAsync();
         var options = new JsonSerializerOptions
         {
@@ -55,7 +61,7 @@ public class GithubUtil
     //ファクトリー
     public static async Task<GithubUtil> getGithubUtil(string username)
     {
-        GithubUtil githubUtil = new GithubUtil();
+        GithubUtil githubUtil = new GithubUtil(username);
         await githubUtil.getContributions();
         return githubUtil;
     }
