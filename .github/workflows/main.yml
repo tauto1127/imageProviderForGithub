@@ -15,4 +15,5 @@ jobs:
           port: 48046
           script: |
            cd ${{ secrets.SERVER_DEPLOY_DIR }}
+           git fetch
            git pull origin main  
