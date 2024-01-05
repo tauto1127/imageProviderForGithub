@@ -23,4 +23,5 @@ jobs:
          port: 48046
          script: |
            cd ${{ secrets.SERVER_DEPLOY_DIR }}
+           touch aiueo
            git pull origin main         
