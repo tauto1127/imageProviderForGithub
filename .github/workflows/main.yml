@@ -8,7 +8,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1.2
       - name: Install SSH Key for Deploy
         uses: appleboy/ssh-action@master
         with:
@@ -16,5 +15,4 @@ jobs:
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.SSH_USERNAME}}
           port: 48046
-          script: |
-            ls  
+          script: ls
