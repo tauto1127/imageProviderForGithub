@@ -26,56 +26,56 @@ namespace imageProviderForGithub.Model
         public DateTimeOffset Date { get; set; }
     }
 
-/*
-    internal static class Converter
-    {
-        public static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
+    /*
+        internal static class Converter
         {
-            MetadataPropertyHandling = MetadataPropertyHandling.Ignore,
-            DateParseHandling = DateParseHandling.None,
-            Converters =
+            public static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
             {
-                ColorConverter.Singleton,
-                ContributionLevelConverter.Singleton,
-                new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
-            },
-        };
-    }
-
-    internal class ColorConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => true;
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null) return null;
-            var value = serializer.Deserialize<string>(reader);
-            return value;
+                MetadataPropertyHandling = MetadataPropertyHandling.Ignore,
+                DateParseHandling = DateParseHandling.None,
+                Converters =
+                {
+                    ColorConverter.Singleton,
+                    ContributionLevelConverter.Singleton,
+                    new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
+                },
+            };
         }
 
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
+        internal class ColorConverter : JsonConverter
         {
-            throw new Exception("Cannot marshal type Color");
+            public override bool CanConvert(Type t) => true;
+
+            public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
+            {
+                if (reader.TokenType == JsonToken.Null) return null;
+                var value = serializer.Deserialize<string>(reader);
+                return value;
+            }
+
+            public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
+            {
+                throw new Exception("Cannot marshal type Color");
+            }
+
+            public static readonly ColorConverter Singleton = new ColorConverter();
         }
 
-        public static readonly ColorConverter Singleton = new ColorConverter();
-    }
-
-    internal class ContributionLevelConverter : JsonConverter
-    {
-        public override bool CanConvert(Type t) => true;
-
-        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
+        internal class ContributionLevelConverter : JsonConverter
         {
-            var value = serializer.Deserialize<string>(reader);
-            return value;
-        }
+            public override bool CanConvert(Type t) => true;
 
-        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
-        {
-            throw new Exception("Cannot marshal type ContributionLevel");
-        }
+            public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
+            {
+                var value = serializer.Deserialize<string>(reader);
+                return value;
+            }
 
-        public static readonly ContributionLevelConverter Singleton = new ContributionLevelConverter();
-    }*/
+            public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
+            {
+                throw new Exception("Cannot marshal type ContributionLevel");
+            }
+
+            public static readonly ContributionLevelConverter Singleton = new ContributionLevelConverter();
+        }*/
 }

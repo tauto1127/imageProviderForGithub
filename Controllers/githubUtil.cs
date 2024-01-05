@@ -8,7 +8,7 @@ public class GithubUtil
 {
     private const String ApiUrl = "https://github-contributions-api.deno.dev/";
     private const String ExtensionResponse = ".json";
-    
+
     private GithubContributionApi _githubContributionApi = null!;
     private String userName;
 
@@ -33,7 +33,7 @@ public class GithubUtil
     {
         int streak = 0;
         bool flag = false;
-        
+
         for (int i = _githubContributionApi.Contributions.Length - 1; i >= 0; i--)
         {
             if (flag)

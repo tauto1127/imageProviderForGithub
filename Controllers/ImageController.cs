@@ -23,7 +23,7 @@ namespace imageProviderForGithub.Controllers
                 .AddJsonFile("appsettings.json")
                 .Build();
             imgbun_api_key = configuration["imgbun_api_key"]!;
-            Console.WriteLine("keyは"+ imgbun_api_key);
+            Console.WriteLine("keyは" + imgbun_api_key);
         }
         [HttpGet]
         //[Produces("image/png")]
@@ -39,7 +39,7 @@ namespace imageProviderForGithub.Controllers
             //return await result.Content.ReadAsByteArrayAsync();
         }
 
-        private static async Task<HttpResponseMessage> loadImageFromURL( Uri url )
+        private static async Task<HttpResponseMessage> loadImageFromURL(Uri url)
         {
             var client = new HttpClient()
             {
@@ -52,9 +52,9 @@ namespace imageProviderForGithub.Controllers
         public async Task<ActionResult> StreakImg(string username)
         {
             Response.Headers["Cache-Control"] = "no-cache";
-            
-            Console.WriteLine("キーは" + imgbun_api_key +"です。");
-            
+
+            Console.WriteLine("キーは" + imgbun_api_key + "です。");
+
             var githubUtil = await GithubUtil.getGithubUtil(username);
             int streak = githubUtil.GetStreak();
             Uri img = await imgbunUtil.GetImgWithText(key: imgbun_api_key, text: "STREAK: " + streak);
