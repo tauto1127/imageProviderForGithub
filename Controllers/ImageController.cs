@@ -62,5 +62,11 @@ namespace imageProviderForGithub.Controllers
             var res = await httpClient.GetAsync(img);
             return base.File(await res.Content.ReadAsByteArrayAsync(), "image/png");
         }
+
+        [HttpGet]
+        public async Task<String> Test(string text)
+        {
+            return text;
+        }
     }
 }
