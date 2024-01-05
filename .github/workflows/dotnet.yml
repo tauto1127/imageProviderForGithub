@@ -22,3 +22,16 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet format
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -u
+        git commit -m "Apply dotnet format changes" || echo "No changes to commit"
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: dev
+        force: true
